@@ -1,1 +1,1 @@
-# Swipetivity
+# swipetivity
