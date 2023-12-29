@@ -1,4 +1,4 @@
-package io.swipetivity.app
+package io.swipetivity.swipetivity_app
 
 import io.flutter.embedding.android.FlutterActivity
 

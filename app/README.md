@@ -1,6 +1,6 @@
-# app
+# swipetivity_app
 
-Swipe your activities!
+The swipetivity app.
 
 ## Getting Started
 
