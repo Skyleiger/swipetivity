@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+
+    <changeSet id="1706120264974-1" author="dominic-wienzek">
+        <createTable tableName="communities">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_communities"/>
+            </column>
+            <column name="pin" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_at" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP" name="updated_at"
+                    type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1706120264974-2" author="dominic-wienzek">
+        <createTable tableName="community_members">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_community_members"/>
+            </column>
+            <column name="community_id" type="BIGINT">
+                <constraints nullable="false" referencedColumnNames="id" referencedTableName="communities"
+                             foreignKeyName="fk_community_id"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false" referencedColumnNames="id" referencedTableName="users"
+                             foreignKeyName="fk_user_id"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_at" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP" name="updated_at"
+                    type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1706120264974-3" author="dominic-wienzek">
+        <addUniqueConstraint columnNames="community_id, user_id" constraintName="unique_community_and_user"
+                             tableName="community_members"/>
+    </changeSet>
+
+    <changeSet id="1706120264974-4" author="dominic-wienzek">
+        <createTable tableName="surveys">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_surveys"/>
+            </column>
+            <column name="community_id" type="BIGINT">
+                <constraints nullable="false" referencedColumnNames="id" referencedTableName="communities"
+                             foreignKeyName="fk_community_id"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_at" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP" name="updated_at"
+                    type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1706120264974-5" author="dominic-wienzek">
+        <addUniqueConstraint columnNames="community_id, name" constraintName="unique_community_and_name"
+                             tableName="surveys"/>
+    </changeSet>
+
+</databaseChangeLog>
