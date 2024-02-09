@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:swipetivity_app/app/routing/routes.dart';
 
 class StartPage extends StatelessWidget {
@@ -22,36 +23,27 @@ class StartPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              SizedBox(
-                width: size.height * 0.4,
-                height: size.width * 0.3,
-                child: const FittedBox(
-                  child: Icon(Icons.interests),
-                ),
-              ),
-              Text(
-                "Swipetivity",
-                style: themeData.textTheme.displayMedium!.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
-                textAlign: TextAlign.center,
+              SvgPicture.asset(
+                "assets/icons/logo/logo-small.svg",
+                semanticsLabel: "Swipetivity Logo",
+                height: size.height * 0.2,
               ),
               SizedBox(
-                height: size.height * 0.015,
+                height: size.height * 0.05,
               ),
               Text(
-                "Bitte treffe eine Auswahl um zu starten.",
-                style: themeData.textTheme.titleLarge,
+                "Willkommen bei Swipetivity",
+                style: themeData.textTheme.displaySmall!.copyWith(
+                ),
                 textAlign: TextAlign.center,
               ),
               SizedBox(
                 height: size.height * 0.1,
               ),
               ElevatedButton(
-                style: ElevatedButton.styleFrom(),
-                onPressed: () => _onLoginButtonPressed(context),
+                onPressed: () => _onRegisterButtonPressed(context),
                 child: Text(
-                  "Einloggen",
+                  "Ein Konto erstellen",
                   style: themeData.textTheme.titleLarge,
                 ),
               ),
@@ -59,9 +51,9 @@ class StartPage extends StatelessWidget {
                 height: size.height * 0.015,
               ),
               ElevatedButton(
-                onPressed: () => _onRegisterButtonPressed(context),
+                onPressed: () => _onLoginButtonPressed(context),
                 child: Text(
-                  "Registrieren",
+                  "Ich habe bereits ein Konto",
                   style: themeData.textTheme.titleLarge,
                 ),
               ),
