@@ -95,7 +95,7 @@ class _LoginForm extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             SizedBox(
-              height: size.height * 0.03,
+              height: size.height * 0.1,
             ),
             FormBuilderTextField(
               name: "email",
