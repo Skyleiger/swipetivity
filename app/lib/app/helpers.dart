@@ -71,6 +71,14 @@ void showInformationDialog({
   );
 }
 
+void showNotImplementedDialog({required BuildContext context, String? title}) {
+  showInformationDialog(
+    context: context,
+    title: title ?? "Fehler",
+    description: "Diese Funktion ist noch nicht implementiert.",
+  );
+}
+
 MaterialColor getMaterialColor(Color color) {
   final int red = color.red;
   final int green = color.green;

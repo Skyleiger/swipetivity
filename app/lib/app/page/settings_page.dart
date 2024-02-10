@@ -24,11 +24,8 @@ class _SettingsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SettingsList(
-      lightTheme: SettingsThemeData(
-        settingsListBackground: Theme.of(context).colorScheme.background,
-      ),
-      sections: const [
+    return const SettingsList(
+      sections: [
         _TitleSettingsSection(),
         _AccountSettingsSection(),
         _DesignSettingsSection(),
@@ -121,11 +118,7 @@ class _AccountSettingsSection extends AbstractSettingsSection {
   }
 
   void _onProfileButtonPressed(BuildContext context) {
-    showInformationDialog(
-      context: context,
-      title: "Profil",
-      description: "Diese Funktion ist noch nicht implementiert.",
-    );
+    showNotImplementedDialog(context: context);
   }
 
   void _onLogoutButtonPressed(BuildContext context) {
@@ -159,6 +152,7 @@ class _DesignSettingsSection extends AbstractSettingsSection {
           leading: const Icon(Icons.color_lens),
           title: const Text("Theme"),
           value: const Text("Wie System"),
+          onPressed: _onThemeButtonPressed,
         )
       ],
     );
@@ -195,6 +189,10 @@ class _DesignSettingsSection extends AbstractSettingsSection {
       },
     );
   }
+
+  void _onThemeButtonPressed(BuildContext context) {
+    showNotImplementedDialog(context: context);
+  }
 }
 
 class _MoreSettingsSection extends AbstractSettingsSection {
@@ -208,14 +206,22 @@ class _MoreSettingsSection extends AbstractSettingsSection {
         SettingsTile(
           title: const Text("Datenschutz"),
           leading: const Icon(Icons.privacy_tip),
-          onPressed: (context) => {},
+          onPressed: _onPrivacyButtonPressed,
         ),
         SettingsTile(
           title: const Text("Impressum"),
           leading: const Icon(Icons.info),
-          onPressed: (context) => {},
+          onPressed: _onImprintButtonPressed,
         ),
       ],
     );
+  }
+
+  void _onPrivacyButtonPressed(BuildContext context) {
+    showNotImplementedDialog(context: context);
+  }
+
+  void _onImprintButtonPressed(BuildContext context) {
+    showNotImplementedDialog(context: context);
   }
 }

@@ -51,7 +51,11 @@ class _AuthLoginView extends StatelessWidget {
 
   void _handleLoginStateChange(BuildContext context, LoginState state) {
     if (state.status == LoginStatus.success) {
-      DashboardRoute().go(context);
+      ScaffoldMessenger.of(context)
+        ..clearSnackBars()
+        ..hideCurrentSnackBar();
+
+      HomeRoute().go(context);
     } else if (state.status == LoginStatus.failed) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
