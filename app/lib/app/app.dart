@@ -3,22 +3,25 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:swipetivity_app/app/bloc/auth/auth_bloc.dart';
 import 'package:swipetivity_app/app/repository/auth_repository.dart';
 import 'package:swipetivity_app/app/routing/routes.dart';
+import 'package:swipetivity_app/localization/translations.g.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return _AppRepositoryProvider(
-      child: _AppBlocProvider(
-        child: _AppBlocListenerProvider(
-          child: MaterialApp.router(
-            routerConfig: Routing.router,
-            title: "Swipetivity",
-            theme: _getLightThemeData(),
-            darkTheme: _getDarkThemeData(),
-            themeMode: ThemeMode.dark,
-            debugShowCheckedModeBanner: false,
+    return TranslationProvider(
+      child: _AppRepositoryProvider(
+        child: _AppBlocProvider(
+          child: _AppBlocListenerProvider(
+            child: MaterialApp.router(
+              routerConfig: Routing.router,
+              onGenerateTitle: (context) => context.translations.app.title,
+              theme: _getLightThemeData(),
+              darkTheme: _getDarkThemeData(),
+              themeMode: ThemeMode.dark,
+              debugShowCheckedModeBanner: false,
+            ),
           ),
         ),
       ),

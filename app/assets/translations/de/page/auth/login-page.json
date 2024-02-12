@@ -1,0 +1,10 @@
+{
+  "title": "Anmelden",
+  "subtitle": "Bitte melde dich an.",
+  "emailInput": "E-Mail Adresse",
+  "passwordInput": "Password",
+  "forgotPasswordButton": "Passwort vergessen?",
+  "loginButton": "Anmelden",
+  "registerButton": "Noch kein Konto? Registrieren",
+  "loginFailed": "Anmeldung fehlgeschlagen"
+}

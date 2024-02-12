@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:swipetivity_app/app/routing/routes.dart';
+import 'package:swipetivity_app/localization/translations.g.dart';
 
 class StartPage extends StatelessWidget {
   const StartPage({super.key});
@@ -32,9 +33,8 @@ class StartPage extends StatelessWidget {
                 height: size.height * 0.05,
               ),
               Text(
-                "Willkommen bei Swipetivity",
-                style: themeData.textTheme.displaySmall!.copyWith(
-                ),
+                context.translations.startPage.title,
+                style: themeData.textTheme.displaySmall!.copyWith(),
                 textAlign: TextAlign.center,
               ),
               SizedBox(
@@ -43,7 +43,7 @@ class StartPage extends StatelessWidget {
               ElevatedButton(
                 onPressed: () => _onRegisterButtonPressed(context),
                 child: Text(
-                  "Ein Konto erstellen",
+                  context.translations.startPage.registerButton,
                   style: themeData.textTheme.titleLarge,
                 ),
               ),
@@ -53,7 +53,7 @@ class StartPage extends StatelessWidget {
               ElevatedButton(
                 onPressed: () => _onLoginButtonPressed(context),
                 child: Text(
-                  "Ich habe bereits ein Konto",
+                  context.translations.startPage.loginButton,
                   style: themeData.textTheme.titleLarge,
                 ),
               ),

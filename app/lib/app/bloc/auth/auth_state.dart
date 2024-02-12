@@ -2,7 +2,7 @@ part of 'auth_bloc.dart';
 
 @MappableClass()
 @immutable
-sealed class AuthState {
+sealed class AuthState with AuthStateMappable {
   const AuthState();
 }
 

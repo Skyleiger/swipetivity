@@ -4,6 +4,7 @@ import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:go_router/go_router.dart';
 import 'package:swipetivity_app/app/bloc/auth/auth_bloc.dart';
 import 'package:swipetivity_app/app/helpers.dart';
+import 'package:swipetivity_app/localization/translations.g.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -12,7 +13,7 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Einstellungen"),
+        title: Text(context.translations.settingsPage.name),
       ),
       body: const _SettingsList(),
     );
@@ -42,6 +43,7 @@ class _TitleSettingsSection extends AbstractSettingsSection {
   Widget build(BuildContext context) {
     ThemeData themeData = Theme.of(context);
     Size size = MediaQuery.of(context).size;
+    var translations = context.translations.settingsPage.section.title;
 
     return CustomSettingsSection(
       child: Container(
@@ -64,10 +66,10 @@ class _TitleSettingsSection extends AbstractSettingsSection {
               builder: (context, state) {
                 String firstName = state is AuthenticatedState
                     ? state.account.firstName
-                    : "Unbekannt";
+                    : translations.unknownFirstName;
 
                 return Text(
-                  "Hallo, $firstName",
+                  translations.title(firstName: firstName),
                   style: themeData.textTheme.headlineLarge,
                   textAlign: TextAlign.center,
                 );
@@ -80,10 +82,10 @@ class _TitleSettingsSection extends AbstractSettingsSection {
               builder: (context, state) {
                 String username = state is AuthenticatedState
                     ? state.account.username
-                    : "Unbekannt";
+                    : translations.unknownUsername;
 
                 return Text(
-                  "@$username",
+                  translations.subtitle(username: username),
                   style: themeData.textTheme.titleLarge,
                   textAlign: TextAlign.center,
                 );
@@ -101,15 +103,17 @@ class _AccountSettingsSection extends AbstractSettingsSection {
 
   @override
   Widget build(BuildContext context) {
+    var translations = context.translations.settingsPage.section.account;
+
     return SettingsSection(
-      title: const Text("Account"),
+      title: Text(translations.name),
       tiles: [
         SettingsTile(
-            title: const Text("Profil"),
+            title: Text(translations.profileButton),
             leading: const Icon(Icons.person),
             onPressed: _onProfileButtonPressed),
         SettingsTile(
-          title: const Text("Abmelden"),
+          title: Text(translations.logout.button),
           leading: const Icon(Icons.logout),
           onPressed: _onLogoutButtonPressed,
         ),
@@ -124,8 +128,10 @@ class _AccountSettingsSection extends AbstractSettingsSection {
   void _onLogoutButtonPressed(BuildContext context) {
     showConfirmDialog(
       context: context,
-      title: "Ausloggen",
-      description: "Möchtest du dich wirklich ausloggen?",
+      title: context
+          .translations.settingsPage.section.account.logout.confirmDialog.title,
+      description: context.translations.settingsPage.section.account.logout
+          .confirmDialog.description,
       confirmButtonAction: () {
         context.pop();
         context.read<AuthBloc>().add(const UnauthenticatedEvent());
@@ -139,19 +145,22 @@ class _DesignSettingsSection extends AbstractSettingsSection {
 
   @override
   Widget build(BuildContext context) {
+    var translations = context.translations.settingsPage.section.design;
+
     return SettingsSection(
-      title: const Text("Gestaltung"),
+      title: Text(translations.name),
       tiles: [
         SettingsTile.navigation(
           leading: const Icon(Icons.language),
-          title: const Text("Sprache"),
-          value: const Text("Deutsch"),
+          title: Text(translations.language.button),
+          value: Text(context.translations.general
+              .locale(locale: LocaleSettings.currentLocale)),
           onPressed: _onLanguageButtonPressed,
         ),
         SettingsTile(
           leading: const Icon(Icons.color_lens),
-          title: const Text("Theme"),
-          value: const Text("Wie System"),
+          title: Text(translations.theme.button),
+          value: Text(translations.theme.system),
           onPressed: _onThemeButtonPressed,
         )
       ],
@@ -159,25 +168,26 @@ class _DesignSettingsSection extends AbstractSettingsSection {
   }
 
   void _onLanguageButtonPressed(BuildContext context) {
+    var translations = context.translations.settingsPage.section.design.language;
+
+    List<RadioListTile<AppLocale>> localeTiles = AppLocale.values.map((locale) {
+      return RadioListTile(
+        title: Text(context.translations.general.locale(locale: locale)),
+        value: locale,
+        groupValue: LocaleSettings.currentLocale,
+        onChanged: (value) {
+          LocaleSettings.setLocale(value!);
+          context.pop();
+        },
+      );
+    }).toList();
+
     AlertDialog dialog = AlertDialog(
-      title: const Text("Sprache wählen"),
+      title: Text(translations.chooseDialog.title),
       contentPadding: const EdgeInsets.all(10),
       content: Column(
         mainAxisSize: MainAxisSize.min,
-        children: [
-          RadioListTile(
-            title: const Text("Deutsch"),
-            value: "Deutsch",
-            groupValue: "",
-            onChanged: (value) => context.pop(),
-          ),
-          RadioListTile(
-            title: const Text("Englisch"),
-            value: "Englisch",
-            groupValue: "",
-            onChanged: (value) => context.pop(),
-          )
-        ],
+        children: localeTiles,
       ),
     );
 
@@ -200,16 +210,18 @@ class _MoreSettingsSection extends AbstractSettingsSection {
 
   @override
   Widget build(BuildContext context) {
+    var translations = context.translations.settingsPage.section.more;
+
     return SettingsSection(
-      title: const Text("Weiteres"),
+      title: Text(translations.name),
       tiles: [
         SettingsTile(
-          title: const Text("Datenschutz"),
+          title: Text(translations.privacyButton),
           leading: const Icon(Icons.privacy_tip),
           onPressed: _onPrivacyButtonPressed,
         ),
         SettingsTile(
-          title: const Text("Impressum"),
+          title: Text(translations.imprintButton),
           leading: const Icon(Icons.info),
           onPressed: _onImprintButtonPressed,
         ),

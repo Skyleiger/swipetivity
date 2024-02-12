@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:swipetivity_app/app/routing/routes.dart';
+import 'package:swipetivity_app/localization/translations.g.dart';
 
 class BasePage extends StatelessWidget {
   static final _routes = [
     _ChildRoute(
       route: const HomeRoute().location,
       icon: Icons.home,
-      label: "Home",
+      label: (context) => context.translations.homePage.name,
     ),
     _ChildRoute(
       route: const CommunitiesRoute().location,
       icon: Icons.group,
-      label: "Communities",
+      label: (context) => context.translations.communitiesPage.name,
     ),
     _ChildRoute(
       route: const SurveysRoute().location,
       icon: Icons.thumb_up,
-      label: "Umfragen",
+      label: (context) => context.translations.surveysPage.name,
     ),
   ];
 
@@ -35,12 +36,13 @@ class BasePage extends StatelessWidget {
     _ChildRoute currentRoute =
         _routes.firstWhere((element) => element.route == state.matchedLocation);
 
-    List<NavigationDestination> destinations =
-        _routes.map((route) => route.toNavigationDestination()).toList();
+    List<NavigationDestination> destinations = _routes.map((route) {
+      return route.toNavigationDestination(context);
+    }).toList();
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(currentRoute.label),
+        title: Text(currentRoute.label(context)),
         automaticallyImplyLeading: false,
         actions: [
           Padding(
@@ -74,7 +76,7 @@ class BasePage extends StatelessWidget {
 class _ChildRoute {
   final String route;
   final IconData icon;
-  final String label;
+  final String Function(BuildContext context) label;
 
   const _ChildRoute({
     required this.route,
@@ -82,10 +84,10 @@ class _ChildRoute {
     required this.label,
   });
 
-  NavigationDestination toNavigationDestination() {
+  NavigationDestination toNavigationDestination(BuildContext context) {
     return NavigationDestination(
       icon: Icon(icon),
-      label: label,
+      label: label(context),
     );
   }
 }

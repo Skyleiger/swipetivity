@@ -1,0 +1,6 @@
+{
+  "locale(context=AppLocale, param=locale)": {
+    "de": "Deutsch",
+    "en": "Englisch"
+  }
+}

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:swipetivity_app/localization/translations.g.dart';
 
 void showConfirmDialog({
   required BuildContext context,
   required String title,
   required String description,
-  String cancelButtonText = "Abbrechen",
+  String? cancelButtonText,
   VoidCallback? cancelButtonAction,
-  String confirmButtonText = "Bestätigen",
+  String? confirmButtonText,
   VoidCallback? confirmButtonAction,
 }) {
   cancelButtonAction ??= () => context.pop();
@@ -15,11 +16,11 @@ void showConfirmDialog({
 
   Widget cancelButton = TextButton(
     onPressed: cancelButtonAction,
-    child: Text(cancelButtonText),
+    child: Text(cancelButtonText ?? context.translations.dialog.confirm.cancelButton),
   );
   Widget confirmButton = TextButton(
     onPressed: confirmButtonAction,
-    child: Text(confirmButtonText),
+    child: Text(confirmButtonText ?? context.translations.dialog.confirm.confirmButton),
   );
 
   AlertDialog alert = AlertDialog(
@@ -44,14 +45,14 @@ void showInformationDialog({
   required BuildContext context,
   required String title,
   required String description,
-  String buttonText = "Schließen",
+  String? buttonText,
   VoidCallback? buttonAction,
 }) {
   buttonAction ??= () => context.pop();
 
   Widget button = TextButton(
     onPressed: buttonAction,
-    child: Text(buttonText),
+    child: Text(buttonText ?? context.translations.dialog.information.closeButton),
   );
 
   AlertDialog alert = AlertDialog(
@@ -74,8 +75,8 @@ void showInformationDialog({
 void showNotImplementedDialog({required BuildContext context, String? title}) {
   showInformationDialog(
     context: context,
-    title: title ?? "Fehler",
-    description: "Diese Funktion ist noch nicht implementiert.",
+    title: title ?? context.translations.dialog.notImplemented.title,
+    description: context.translations.dialog.notImplemented.description,
   );
 }
 

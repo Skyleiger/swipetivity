@@ -1,0 +1,13 @@
+{
+  "confirm": {
+    "confirmButton": "Bestätigen",
+    "cancelButton": "Abbrechen"
+  },
+  "information": {
+    "closeButton": "Schließen"
+  },
+  "notImplemented": {
+    "title": "Fehler",
+    "description": "Diese Funktion ist noch nicht implementiert."
+  }
+}

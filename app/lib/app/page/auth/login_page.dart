@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:material_loading_buttons/material_loading_buttons.dart';
 import 'package:swipetivity_app/app/bloc/login/login_bloc.dart';
 import 'package:swipetivity_app/app/routing/routes.dart';
+import 'package:swipetivity_app/localization/translations.g.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -55,11 +56,11 @@ class _AuthLoginView extends StatelessWidget {
         ..clearSnackBars()
         ..hideCurrentSnackBar();
 
-      HomeRoute().go(context);
+      const HomeRoute().go(context);
     } else if (state.status == LoginStatus.failed) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text("Anmeldung fehlgeschlagen"),
+        SnackBar(
+          content: Text(context.translations.loginPage.loginFailed),
         ),
       );
     }
@@ -84,7 +85,7 @@ class _LoginForm extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              "Anmelden",
+              context.translations.loginPage.title,
               style: themeData.textTheme.displayMedium!.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -94,7 +95,7 @@ class _LoginForm extends StatelessWidget {
               height: size.height * 0.015,
             ),
             Text(
-              "Bitte melde dich an.",
+              context.translations.loginPage.subtitle,
               style: themeData.textTheme.titleLarge,
               textAlign: TextAlign.center,
             ),
@@ -103,9 +104,9 @@ class _LoginForm extends StatelessWidget {
             ),
             FormBuilderTextField(
               name: "email",
-              decoration: const InputDecoration(
-                labelText: "E-Mail",
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: context.translations.loginPage.emailInput,
+                border: const OutlineInputBorder(),
               ),
               validator: FormBuilderValidators.compose([
                 FormBuilderValidators.required(),
@@ -117,9 +118,9 @@ class _LoginForm extends StatelessWidget {
             ),
             FormBuilderTextField(
               name: "password",
-              decoration: const InputDecoration(
-                labelText: "Passwort",
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: context.translations.loginPage.passwordInput,
+                border: const OutlineInputBorder(),
               ),
               validator: FormBuilderValidators.compose([
                 FormBuilderValidators.required(),
@@ -132,7 +133,7 @@ class _LoginForm extends StatelessWidget {
             TextButton(
               onPressed: () => _onForgotPasswordButtonPressed(context),
               child: Text(
-                "Passwort vergessen?",
+                context.translations.loginPage.forgotPasswordButton,
                 style: themeData.textTheme.titleMedium,
               ),
             ),
@@ -145,7 +146,7 @@ class _LoginForm extends StatelessWidget {
                   onPressed: () => _onLoginButtonPressed(context),
                   isLoading: state.status == LoginStatus.loading,
                   child: Text(
-                    "Anmelden",
+                    context.translations.loginPage.loginButton,
                     style: themeData.textTheme.titleLarge,
                   ),
                 );
@@ -157,7 +158,7 @@ class _LoginForm extends StatelessWidget {
             TextButton(
               onPressed: () => _onRegisterButtonPressed(context),
               child: Text(
-                "Noch keinen Account? Registrieren",
+                context.translations.loginPage.registerButton,
                 style: themeData.textTheme.titleMedium,
               ),
             ),

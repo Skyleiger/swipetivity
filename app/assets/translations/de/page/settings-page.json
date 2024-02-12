@@ -1,0 +1,42 @@
+{
+  "name": "Einstellungen",
+  "section": {
+    "title": {
+      "title": "Hallo, {firstName}",
+      "subtitle": "@{username}",
+      "unknownFirstName": "Unbekannt",
+      "unknownUsername": "Unbekannt"
+    },
+    "account": {
+      "name": "Account",
+      "profileButton": "Profil",
+      "logout": {
+        "button": "Abmelden",
+        "confirmDialog": {
+          "title": "Abmelden",
+          "description": "Möchtest du dich wirklich abmelden?"
+        }
+      }
+    },
+    "design": {
+      "name": "Gestaltung",
+      "language": {
+        "button": "Sprache",
+        "chooseDialog": {
+          "title": "Sprache wählen"
+        }
+      },
+      "theme": {
+        "button": "Theme",
+        "light": "Hell",
+        "dark": "Dunkel",
+        "system": "Wie System"
+      }
+    },
+    "more": {
+      "name": "Weiteres",
+      "privacyButton": "Datenschutz",
+      "imprintButton": "Impressum"
+    }
+  }
+}
