@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:swipetivity_app/app/routing/routes.dart';
+import 'package:swipetivity_app/routing/routes.dart';
 import 'package:swipetivity_app/localization/translations.g.dart';
 
 class StartPage extends StatelessWidget {
@@ -65,10 +65,10 @@ class StartPage extends StatelessWidget {
   }
 
   void _onLoginButtonPressed(BuildContext context) {
-    AuthLoginRoute().push(context);
+    const LoginPageRoute().push(context);
   }
 
   void _onRegisterButtonPressed(BuildContext context) {
-    AuthRegisterRoute().push(context);
+    const RegisterPageRoute().push(context);
   }
 }

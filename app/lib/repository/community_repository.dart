@@ -1,4 +1,4 @@
-import 'package:swipetivity_app/app/model/community.dart';
+import 'package:swipetivity_app/model/community.dart';
 
 class CommunityRepository {
   final List<Community> communities = [

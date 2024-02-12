@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:swipetivity_app/app/model/account.dart';
+import 'package:swipetivity_app/model/account.dart';
 
 const Account baseAccount = Account(
   id: 1,

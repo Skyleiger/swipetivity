@@ -4,9 +4,9 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_loading_buttons/material_loading_buttons.dart';
-import 'package:swipetivity_app/app/bloc/login/login_bloc.dart';
-import 'package:swipetivity_app/app/routing/routes.dart';
+import 'package:swipetivity_app/bloc/login/login_bloc.dart';
 import 'package:swipetivity_app/localization/translations.g.dart';
+import 'package:swipetivity_app/routing/routes.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -24,7 +24,7 @@ class LoginPage extends StatelessWidget {
             authRepository: context.read(),
             authBloc: context.read(),
           ),
-          child: const _AuthLoginView(),
+          child: const _LoginView(),
         ));
   }
 
@@ -33,8 +33,8 @@ class LoginPage extends StatelessWidget {
   }
 }
 
-class _AuthLoginView extends StatelessWidget {
-  const _AuthLoginView();
+class _LoginView extends StatelessWidget {
+  const _LoginView();
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +56,7 @@ class _AuthLoginView extends StatelessWidget {
         ..clearSnackBars()
         ..hideCurrentSnackBar();
 
-      const HomeRoute().go(context);
+      const HomePageRoute().go(context);
     } else if (state.status == LoginStatus.failed) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -102,31 +102,11 @@ class _LoginForm extends StatelessWidget {
             SizedBox(
               height: size.height * 0.1,
             ),
-            FormBuilderTextField(
-              name: "email",
-              decoration: InputDecoration(
-                labelText: context.translations.loginPage.emailInput,
-                border: const OutlineInputBorder(),
-              ),
-              validator: FormBuilderValidators.compose([
-                FormBuilderValidators.required(),
-                FormBuilderValidators.email(),
-              ]),
-            ),
+            const _EmailAddressField(),
             SizedBox(
               height: size.height * 0.015,
             ),
-            FormBuilderTextField(
-              name: "password",
-              decoration: InputDecoration(
-                labelText: context.translations.loginPage.passwordInput,
-                border: const OutlineInputBorder(),
-              ),
-              validator: FormBuilderValidators.compose([
-                FormBuilderValidators.required(),
-              ]),
-              obscureText: true,
-            ),
+            const _PasswordField(),
             SizedBox(
               height: size.height * 0.03,
             ),
@@ -140,18 +120,7 @@ class _LoginForm extends StatelessWidget {
             SizedBox(
               height: size.height * 0.005,
             ),
-            BlocBuilder<LoginBloc, LoginState>(
-              builder: (context, state) {
-                return ElevatedLoadingButton(
-                  onPressed: () => _onLoginButtonPressed(context),
-                  isLoading: state.status == LoginStatus.loading,
-                  child: Text(
-                    context.translations.loginPage.loginButton,
-                    style: themeData.textTheme.titleLarge,
-                  ),
-                );
-              },
-            ),
+            const _LoginButton(),
             SizedBox(
               height: size.height * 0.03,
             ),
@@ -172,13 +141,77 @@ class _LoginForm extends StatelessWidget {
     FocusManager.instance.primaryFocus?.unfocus();
   }
 
+  void _onRegisterButtonPressed(BuildContext context) {
+    FocusManager.instance.primaryFocus?.unfocus();
+    const RegisterPageRoute().push(context);
+  }
+}
+
+class _EmailAddressField extends StatelessWidget {
+  const _EmailAddressField();
+
+  @override
+  Widget build(BuildContext context) {
+    var translations = context.translations.loginPage.input.email;
+
+    return FormBuilderTextField(
+      name: "email",
+      decoration: InputDecoration(
+        labelText: translations.label,
+        border: const OutlineInputBorder(),
+      ),
+      validator: FormBuilderValidators.compose([
+        FormBuilderValidators.required(
+            errorText: translations.validations.required),
+        FormBuilderValidators.email(errorText: translations.validations.email),
+      ]),
+    );
+  }
+}
+
+class _PasswordField extends StatelessWidget {
+  const _PasswordField();
+
+  @override
+  Widget build(BuildContext context) {
+    var translations = context.translations.loginPage.input.password;
+
+    return FormBuilderTextField(
+      name: "password",
+      decoration: InputDecoration(
+        labelText: translations.label,
+        border: const OutlineInputBorder(),
+      ),
+      validator: FormBuilderValidators.compose([
+        FormBuilderValidators.required(
+            errorText: translations.validations.required),
+      ]),
+      obscureText: true,
+    );
+  }
+}
+
+class _LoginButton extends StatelessWidget {
+  const _LoginButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<LoginBloc, LoginState>(
+      builder: (context, state) {
+        return ElevatedLoadingButton(
+          onPressed: () => _onLoginButtonPressed(context),
+          isLoading: state.status == LoginStatus.loading,
+          child: Text(
+            context.translations.loginPage.loginButton,
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+        );
+      },
+    );
+  }
+
   void _onLoginButtonPressed(BuildContext context) async {
     FocusManager.instance.primaryFocus?.unfocus();
     context.read<LoginBloc>().add(const LoginButtonPressedEvent());
-  }
-
-  void _onRegisterButtonPressed(BuildContext context) {
-    FocusManager.instance.primaryFocus?.unfocus();
-    AuthRegisterRoute().push(context);
   }
 }

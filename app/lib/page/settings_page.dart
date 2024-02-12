@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:go_router/go_router.dart';
-import 'package:swipetivity_app/app/bloc/auth/auth_bloc.dart';
-import 'package:swipetivity_app/app/helpers.dart';
+import 'package:swipetivity_app/bloc/auth/auth_bloc.dart';
+import 'package:swipetivity_app/helpers.dart';
 import 'package:swipetivity_app/localization/translations.g.dart';
 
 class SettingsPage extends StatelessWidget {

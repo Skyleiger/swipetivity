@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:swipetivity_app/app/routing/routes.dart';
+import 'package:swipetivity_app/routing/routes.dart';
 import 'package:swipetivity_app/localization/translations.g.dart';
 
 class BasePage extends StatelessWidget {
   static final _routes = [
     _ChildRoute(
-      route: const HomeRoute().location,
+      route: const HomePageRoute().location,
       icon: Icons.home,
       label: (context) => context.translations.homePage.name,
     ),
     _ChildRoute(
-      route: const CommunitiesRoute().location,
+      route: const CommunitiesPageRoute().location,
       icon: Icons.group,
       label: (context) => context.translations.communitiesPage.name,
     ),
     _ChildRoute(
-      route: const SurveysRoute().location,
+      route: const SurveysPageRoute().location,
       icon: Icons.thumb_up,
       label: (context) => context.translations.surveysPage.name,
     ),
@@ -69,7 +69,7 @@ class BasePage extends StatelessWidget {
   }
 
   void _onProfileButtonPressed(BuildContext context) {
-    SettingsRoute().push(context);
+    const SettingsPageRoute().push(context);
   }
 }
 

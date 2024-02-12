@@ -1,8 +1,8 @@
 import 'package:dart_mappable/dart_mappable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:swipetivity_app/app/model/account.dart';
-import 'package:swipetivity_app/app/repository/auth_repository.dart';
+import 'package:swipetivity_app/model/account.dart';
+import 'package:swipetivity_app/repository/auth_repository.dart';
 
 part 'auth_bloc.mapper.dart';
 

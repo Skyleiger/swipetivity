@@ -1,8 +1,21 @@
 {
   "title": "Anmelden",
   "subtitle": "Bitte melde dich an.",
-  "emailInput": "E-Mail Adresse",
-  "passwordInput": "Password",
+  "input": {
+    "email": {
+      "label": "E-Mail Adresse",
+      "validations": {
+        "required": "Die E-Mail Adresse ist erforderlich.",
+        "email": "Die E-Mail Adresse ist ungültig."
+      }
+    },
+    "password": {
+      "label": "Password",
+      "validations": {
+        "required": "Das Passwort ist erforderlich."
+      }
+    }
+  },
   "forgotPasswordButton": "Passwort vergessen?",
   "loginButton": "Anmelden",
   "registerButton": "Noch kein Konto? Registrieren",

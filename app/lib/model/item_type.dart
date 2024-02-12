@@ -1,18 +1,20 @@
 import 'package:dart_mappable/dart_mappable.dart';
 import 'package:flutter/foundation.dart';
-import 'package:swipetivity_app/app/model/base_model.dart';
+import 'package:swipetivity_app/model/base_model.dart';
 
-part 'survey.mapper.dart';
+part 'item_type.mapper.dart';
 
 @MappableClass()
 @immutable
-class Survey extends BaseModel with SurveyMappable {
+class ItemType extends BaseModel with ItemTypeMappable {
   final String name;
   final String description;
+  final String image;
 
-  const Survey({
+  const ItemType({
     required super.id,
     required this.name,
     required this.description,
+    required this.image,
   });
 }

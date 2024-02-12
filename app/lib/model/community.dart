@@ -1,7 +1,7 @@
 import 'package:dart_mappable/dart_mappable.dart';
 import 'package:flutter/foundation.dart';
-import 'package:swipetivity_app/app/model/base_model.dart';
-import 'package:swipetivity_app/app/model/community_member.dart';
+import 'package:swipetivity_app/model/base_model.dart';
+import 'package:swipetivity_app/model/community_member.dart';
 
 part 'community.mapper.dart';
 
