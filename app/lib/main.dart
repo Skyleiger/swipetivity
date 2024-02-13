@@ -77,6 +77,8 @@ class _AppBlocListenerProvider extends StatelessWidget {
 
             if (state is UnauthenticatedState) {
               const StartPageRoute().go(context);
+            } else if (state is AuthenticatedState) {
+              const HomePageRoute().go(context);
             }
           },
         ),

@@ -2,7 +2,7 @@
   "name": "Einstellungen",
   "section": {
     "title": {
-      "title": "Hallo, {firstName}",
+      "title": "Hallo {firstName}",
       "subtitle": "@{username}",
       "unknownFirstName": "Unbekannt",
       "unknownUsername": "Unbekannt"

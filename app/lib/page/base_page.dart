@@ -42,11 +42,12 @@ class BasePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        titleSpacing: 20,
         title: Text(currentRoute.label(context)),
         automaticallyImplyLeading: false,
         actions: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: IconButton(
               onPressed: () => _onProfileButtonPressed(context),
               icon: const Icon(Icons.person),
