@@ -26,6 +26,7 @@ class _SettingsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const SettingsList(
+      platform: DevicePlatform.android,
       sections: [
         _TitleSettingsSection(),
         _AccountSettingsSection(),
@@ -168,7 +169,8 @@ class _DesignSettingsSection extends AbstractSettingsSection {
   }
 
   void _onLanguageButtonPressed(BuildContext context) {
-    var translations = context.translations.settingsPage.section.design.language;
+    var translations =
+        context.translations.settingsPage.section.design.language;
 
     List<RadioListTile<AppLocale>> localeTiles = AppLocale.values.map((locale) {
       return RadioListTile(
