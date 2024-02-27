@@ -1,6 +1,6 @@
 package io.swipetivity.core.dto.request;
 
-import com.neovisionaries.i18n.LanguageCode;
+import io.swipetivity.core.enums.Language;
 import lombok.Data;
 
 @Data
@@ -11,6 +11,6 @@ public class RegisterRequest {
     private final String firstName;
     private final String lastName;
     private final String username;
-    private final LanguageCode language;
+    private final Language language;
 
 }

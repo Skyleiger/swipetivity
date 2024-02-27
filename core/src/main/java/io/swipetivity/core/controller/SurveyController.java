@@ -35,10 +35,10 @@ public class SurveyController {
         return mapper.toDTO(survey);
     }
 
-    @PostMapping("/create")
+/*    @PostMapping("/create")
     public SurveyResponse createSurvey(@RequestBody SurveyResponse request, @AuthenticationPrincipal UserEntity user) {
         SurveyEntity survey = service.createSurvey(request.getCommunity(), request.getName(), request.getDescription());
         return mapper.toDTO(survey);
-    }
+    }*/
 
 }

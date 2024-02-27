@@ -1,6 +1,6 @@
 package io.swipetivity.core.entity;
 
-import com.neovisionaries.i18n.LanguageCode;
+import io.swipetivity.core.enums.Language;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -31,7 +31,7 @@ public class UserEntity extends BaseEntity {
 
     @Column(name = "language", nullable = false)
     @Enumerated(EnumType.STRING)
-    private LanguageCode language = LanguageCode.en;
+    private Language language = Language.EN;
 
     @OneToMany(mappedBy = "user", orphanRemoval = true)
     private Set<AuthTokenEntity> authenticationTokens = new LinkedHashSet<>();

@@ -26,7 +26,7 @@
             <column name="username" type="VARCHAR(255)">
                 <constraints nullable="false" unique="true"/>
             </column>
-            <column name="language" type="VARCHAR(10)" defaultValue="en">
+            <column name="language" type="ENUM('DE', 'EN')" defaultValue="EN">
                 <constraints nullable="false"/>
             </column>
             <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_at" type="TIMESTAMP">
@@ -46,7 +46,7 @@
             </column>
             <column name="user_id" type="BIGINT">
                 <constraints nullable="false" referencedColumnNames="id" referencedTableName="users"
-                             foreignKeyName="fk_user_id"/>
+                             foreignKeyName="auth_tokens_fk_user_id"/>
             </column>
             <column name="token" type="VARCHAR(255)">
                 <constraints nullable="false" unique="true"/>

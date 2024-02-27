@@ -1,7 +1,7 @@
 package io.swipetivity.core.service;
 
-import com.neovisionaries.i18n.LanguageCode;
 import io.swipetivity.core.entity.UserEntity;
+import io.swipetivity.core.enums.Language;
 import io.swipetivity.core.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,7 +16,7 @@ public class UserService {
     private final UserRepository repository;
     private final PasswordEncoder passwordEncoder;
 
-    public UserEntity createUser(String emailAddress, String password, String firstName, String lastName, String username, LanguageCode language) {
+    public UserEntity createUser(String emailAddress, String password, String firstName, String lastName, String username, Language language) {
         UserEntity user = new UserEntity();
         user.setEmailAddress(emailAddress);
         user.setPassword(passwordEncoder.encode(password));

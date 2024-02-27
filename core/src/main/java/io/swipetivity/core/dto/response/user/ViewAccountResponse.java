@@ -1,6 +1,6 @@
 package io.swipetivity.core.dto.response.user;
 
-import com.neovisionaries.i18n.LanguageCode;
+import io.swipetivity.core.enums.Language;
 import lombok.Value;
 
 import java.io.Serializable;
@@ -12,6 +12,6 @@ public class ViewAccountResponse implements Serializable {
     String firstName;
     String lastName;
     String username;
-    LanguageCode language;
+    Language language;
 
 }
