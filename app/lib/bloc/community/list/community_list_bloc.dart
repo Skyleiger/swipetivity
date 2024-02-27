@@ -21,6 +21,8 @@ class CommunityListBloc extends Bloc<CommunityListEvent, CommunityListState> {
   }) : super(const CommunityListState(status: CommunityListStatus.loading)) {
     on<CommunityListLoadEvent>(_loadCommunityList);
     on<CommunityListRefreshEvent>(_refreshCommunityList);
+
+    add(const CommunityListLoadEvent());
   }
 
   Future<void> _loadCommunityList(

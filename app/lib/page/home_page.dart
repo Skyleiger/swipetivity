@@ -11,6 +11,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const SingleChildScrollView(
+      physics: AlwaysScrollableScrollPhysics(),
       child: Padding(
         padding: EdgeInsets.all(20),
         child: Column(

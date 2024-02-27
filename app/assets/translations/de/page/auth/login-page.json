@@ -10,7 +10,7 @@
       }
     },
     "password": {
-      "label": "Password",
+      "label": "Passwort",
       "validations": {
         "required": "Das Passwort ist erforderlich."
       }

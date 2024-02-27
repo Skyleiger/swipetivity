@@ -1,3 +1,16 @@
 {
-  "name": "Umfragen"
+  "name": "Umfragen",
+  "openSurveys": {
+    "title": "Offene Umfragen"
+  },
+  "finishedSurveys": {
+    "title": "Abgeschlossene Umfragen"
+  },
+  "more": {
+    "title": "Weiteres",
+    "informationText": "Wenn du eine Umfrage erstellen möchtest, tue dies bitte über die jeweilige Community."
+  },
+  "error": {
+    "text": "Deine Umfragen konnten nicht geladen werden."
+  }
 }

@@ -16,7 +16,7 @@ class ItemType extends BaseModel with ItemTypeMappable {
   const ItemType({
     required super.id,
     required this.name,
-    required this.description,
-    required this.image,
+    this.description,
+    this.image,
   });
 }

@@ -5,10 +5,8 @@ class CommunityException implements Exception {
   const CommunityException();
 }
 
-class CommunityNotFoundException extends CommunityException {
-  final String message;
-
-  CommunityNotFoundException(this.message);
+abstract class CommunityNotFoundException extends CommunityException {
+  const CommunityNotFoundException();
 }
 
 class CommunityByPinNotFoundException extends CommunityException {

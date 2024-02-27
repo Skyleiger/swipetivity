@@ -5,6 +5,7 @@ import 'package:swipetivity_app/localization/translations.g.dart';
 import 'package:swipetivity_app/model/community.dart';
 import 'package:swipetivity_app/routing/routes.dart';
 import 'package:swipetivity_app/widget/card.dart';
+import 'package:swipetivity_app/widget/section.dart';
 
 class CommunityListPage extends StatelessWidget {
   const CommunityListPage({super.key});
@@ -16,12 +17,9 @@ class CommunityListPage extends StatelessWidget {
         return CommunityListBloc(
           authBloc: context.read(),
           repository: context.read(),
-        )..add(const CommunityListLoadEvent());
+        );
       },
       child: BlocBuilder<CommunityListBloc, CommunityListState>(
-        buildWhen: (previous, current) {
-          return true;
-        },
         builder: (context, state) {
           Widget child;
 
@@ -68,56 +66,21 @@ class _LoadedView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       physics: const AlwaysScrollableScrollPhysics(),
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
-            const _GeneralTitle(),
-            const SizedBox(height: 20),
-            const _CreateCommunityCard(),
-            const _JoinCommunityCard(),
-            const SizedBox(height: 40),
-            const _CommunitiesTitle(),
-            const SizedBox(height: 20),
-            for (var community in communities)
-              _CommunityCard(community: community),
-          ],
-        ),
+      child: Column(
+        children: [
+          Section(
+            title: context.translations.communityListPage.general.title,
+            children: const [_CreateCommunityCard(), _JoinCommunityCard()],
+          ),
+          Section(
+            title: context.translations.communityListPage.communities.title,
+            children: [
+              for (var community in communities)
+                _CommunityCard(community: community)
+            ],
+          )
+        ],
       ),
-    );
-  }
-}
-
-class _CommunitiesTitle extends StatelessWidget {
-  const _CommunitiesTitle();
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Text(
-          context.translations.communityListPage.communities.title,
-          style: Theme.of(context).textTheme.titleLarge,
-        ),
-        const Spacer()
-      ],
-    );
-  }
-}
-
-class _GeneralTitle extends StatelessWidget {
-  const _GeneralTitle();
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Text(
-          context.translations.communityListPage.general.title,
-          style: Theme.of(context).textTheme.titleLarge,
-        ),
-        const Spacer()
-      ],
     );
   }
 }
@@ -150,7 +113,8 @@ class _JoinCommunityCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var translations = context.translations.communityListPage.general.joinButton;
+    var translations =
+        context.translations.communityListPage.general.joinButton;
 
     return AppCard(
       onTap: _onCardClick,
