@@ -4,6 +4,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:swipetivity_app/bloc/auth/auth_bloc.dart';
 import 'package:swipetivity_app/localization/translations.g.dart';
 import 'package:swipetivity_app/repository/auth_repository.dart';
+import 'package:swipetivity_app/repository/community_repository.dart';
+import 'package:swipetivity_app/repository/survey_repository.dart';
 import 'package:swipetivity_app/routing/routes.dart';
 import 'package:swipetivity_app/routing/routing.dart';
 
@@ -36,6 +38,12 @@ class _AppRepositoryProvider extends StatelessWidget {
         RepositoryProvider<AuthRepository>(
           create: (context) => AuthRepository(),
         ),
+        RepositoryProvider(
+          create: (context) => CommunityRepository(),
+        ),
+        RepositoryProvider(
+          create: (context) => SurveyRepository(),
+        )
       ],
       child: child,
     );

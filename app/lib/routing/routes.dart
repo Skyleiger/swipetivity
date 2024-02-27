@@ -1,28 +1,18 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:swipetivity_app/page/auth/login_page.dart';
 import 'package:swipetivity_app/page/auth/register_page.dart';
 import 'package:swipetivity_app/page/auth/start_page.dart';
 import 'package:swipetivity_app/page/base_page.dart';
-import 'package:swipetivity_app/page/communities_page.dart';
+import 'package:swipetivity_app/page/community/community_list_page.dart';
 import 'package:swipetivity_app/page/error_page.dart';
 import 'package:swipetivity_app/page/home_page.dart';
 import 'package:swipetivity_app/page/settings_page.dart';
-import 'package:swipetivity_app/page/surveys_page.dart';
+import 'package:swipetivity_app/page/survey/survey_list_page.dart';
+import 'package:swipetivity_app/routing/route_components.dart';
+import 'package:swipetivity_app/sheet/community/community_join_sheet.dart';
 
 part 'routes.g.dart';
-
-/// Abstract GoRouteData class that should be used for all child routes inside a shell route.
-/// It disables the transition for the child route.
-@immutable
-abstract class ShellChildRoute extends GoRouteData {
-  const ShellChildRoute();
-
-  @override
-  Page<void> buildPage(BuildContext context, GoRouterState state) {
-    return NoTransitionPage(child: build(context, state));
-  }
-}
 
 @immutable
 class ErrorPageRoute extends GoRouteData {
@@ -69,8 +59,8 @@ class RegisterPageRoute extends GoRouteData {
 
 @TypedShellRoute<_BaseRoute>(routes: [
   TypedGoRoute<HomePageRoute>(path: "/home"),
-  TypedGoRoute<CommunitiesPageRoute>(path: "/communities"),
-  TypedGoRoute<SurveysPageRoute>(path: "/surveys"),
+  TypedGoRoute<CommunityListPageRoute>(path: "/community/list"),
+  TypedGoRoute<SurveyListPageRoute>(path: "/survey/list"),
 ])
 @immutable
 class _BaseRoute extends ShellRouteData {
@@ -96,22 +86,33 @@ class HomePageRoute extends ShellChildRoute {
 }
 
 @immutable
-class CommunitiesPageRoute extends ShellChildRoute {
-  const CommunitiesPageRoute();
+class CommunityListPageRoute extends ShellChildRoute {
+  const CommunityListPageRoute();
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const CommunitiesPage();
+    return const CommunityListPage();
+  }
+}
+
+@TypedGoRoute<CommunityJoinSheetRoute>(path: "/community/join")
+@immutable
+class CommunityJoinSheetRoute extends BottomSheetRoute {
+  const CommunityJoinSheetRoute() : super(isScrollControlled: true);
+
+  @override
+  Widget buildSheet(BuildContext context, GoRouterState state) {
+    return const CommunityJoinSheet();
   }
 }
 
 @immutable
-class SurveysPageRoute extends ShellChildRoute {
-  const SurveysPageRoute();
+class SurveyListPageRoute extends ShellChildRoute {
+  const SurveyListPageRoute();
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const SurveysPage();
+    return const SurveyListPage();
   }
 }
 

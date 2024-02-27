@@ -1,0 +1,25 @@
+{
+  "name": "Communities",
+  "error": {
+    "text": "Deine Communities konnten nicht geladen werden."
+  },
+  "general": {
+    "title": "Allgemein",
+    "createButton": {
+      "title": "Community erstellen",
+      "subtitle": "Erstelle eine neue Community"
+    },
+    "joinButton": {
+      "title": "Community beitreten",
+      "subtitle": "Trete einer neuen Community bei"
+    }
+  },
+  "communities": {
+    "title": "Deine Communities",
+    "noCommunities": "Du bist noch keiner Community beigetreten.",
+    "communityCard": {
+      "title": "{communityName}",
+      "subtitle": "{members} Mitglieder - {openSurveys} offene Umfragen"
+    }
+  }
+}

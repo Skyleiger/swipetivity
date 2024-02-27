@@ -105,7 +105,7 @@ class _OpenSurveysCard extends StatelessWidget {
   }
 
   void _onCardTap(BuildContext context) {
-    const SurveysPageRoute().go(context);
+    const SurveyListPageRoute().go(context);
   }
 }
 
@@ -143,11 +143,11 @@ class _NavigationCard extends StatelessWidget {
   }
 
   void _onSurveysButtonTap(BuildContext context) {
-    const SurveysPageRoute().go(context);
+    const SurveyListPageRoute().go(context);
   }
 
   void _onCommunitiesButtonTap(BuildContext context) {
-    const CommunitiesPageRoute().go(context);
+    const CommunityListPageRoute().go(context);
   }
 
   void _onProfileButtonTap(BuildContext context) {

@@ -1,0 +1,16 @@
+{
+  "title": "Community beitreten",
+  "input": {
+    "pin": {
+      "label": "Community PIN",
+      "validations": {
+        "required": "Die Community PIN wird benötigt."
+      },
+      "error": {
+        "communityNotFound": "Keine Community mit der PIN gefunden.",
+        "userAlreadyInCommunity": "Du bist bereits Mitglied der Community.",
+        "unknown": "Ein Fehler ist aufgetreten. Bitte versuche es später erneut."
+      }
+    }
+  }
+}

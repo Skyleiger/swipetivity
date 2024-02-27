@@ -6,9 +6,9 @@ const Account baseAccount = Account(
   id: 1,
   emailAddress: "abc@example.com",
   password: "test123",
-  firstName: "Dominic",
-  lastName: "Wienzek",
-  username: "dxmiixx",
+  firstName: "Maximilian",
+  lastName: "Mustermann",
+  username: "maxmuster",
 );
 
 class AuthRepository {

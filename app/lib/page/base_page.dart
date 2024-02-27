@@ -11,12 +11,12 @@ class BasePage extends StatelessWidget {
       label: (context) => context.translations.homePage.name,
     ),
     _ChildRoute(
-      route: const CommunitiesPageRoute().location,
+      route: const CommunityListPageRoute().location,
       icon: Icons.group,
-      label: (context) => context.translations.communitiesPage.name,
+      label: (context) => context.translations.communityListPage.name,
     ),
     _ChildRoute(
-      route: const SurveysPageRoute().location,
+      route: const SurveyListPageRoute().location,
       icon: Icons.thumb_up,
       label: (context) => context.translations.surveysPage.name,
     ),

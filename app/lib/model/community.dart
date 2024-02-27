@@ -2,6 +2,7 @@ import 'package:dart_mappable/dart_mappable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:swipetivity_app/model/base_model.dart';
 import 'package:swipetivity_app/model/community_member.dart';
+import 'package:swipetivity_app/model/user.dart';
 
 part 'community.mapper.dart';
 
@@ -18,4 +19,8 @@ class Community extends BaseModel with CommunityMappable {
     required this.pin,
     required this.members,
   });
+
+  bool hasMember(User user) {
+    return members.any((member) => member.user == user);
+  }
 }

@@ -10,9 +10,9 @@
     "counter": "{surveysCount}"
   },
   "navigationCard": {
-    "surveysButton": "Meine Umfragen",
-    "communitiesButton": "Meine Communities",
-    "profileButton": "Mein Profil",
+    "surveysButton": "Deine Umfragen",
+    "communitiesButton": "Deine Communities",
+    "profileButton": "Dein Profil",
     "logoutButton": "Abmelden"
   }
 }

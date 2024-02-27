@@ -36,4 +36,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     emit(const UnauthenticatedState());
   }
+
+  Account? get account {
+    if (state is AuthenticatedState) {
+      return (state as AuthenticatedState).account;
+    }
+
+    return null;
+  }
 }
