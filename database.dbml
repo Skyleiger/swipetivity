@@ -1,0 +1,130 @@
+Table users {
+  id bigint [pk, not null]
+  email_address varchar(255) [not null, unique]
+  password varchar(72) [not null]
+  first_name varchar(255) [not null]
+  last_name varchar(255) [not null]
+  username varchar(255) [not null, unique]
+  language language [not null, default: "DE"]
+  created_at timestamp [not null, default: `CURRENT_TIMESTAMP`]
+  updated_at timestamp [not null, default: `CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP`]
+}
+
+Enum language {
+  DE
+  EN
+}
+
+Table auth_tokens {
+  id bigint [pk, not null]
+  user_id bigint [ref: - users.id, not null]
+  token varchar(255) [not null, unique]
+  created_at timestamp [not null, default: `CURRENT_TIMESTAMP`]
+  updated_at timestamp [not null, default: `CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP`]
+}
+
+Table communities {
+  id bigint [pk, not null]
+  pin varchar(255) [not null, unique]
+  name varchar(255) [not null]
+  created_at timestamp [not null, default: `CURRENT_TIMESTAMP`]
+  updated_at timestamp [not null, default: `CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP`]
+}
+
+Table community_members {
+  id bigint [pk, not null]
+  community_id bigint [ref: < communities.id, not null]
+  user_id bigint [ref: - users.id, not null]
+  created_at timestamp [not null, default: `CURRENT_TIMESTAMP`]
+  updated_at timestamp [not null, default: `CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP`]
+
+  indexes {
+    (community_id, user_id) [unique]
+  }
+}
+
+Table surveys {
+  id bigint [pk, not null]
+  community_id bigint [ref: > communities.id, not null]
+  name varchar(255) [not null]
+  item_type bigint [ref: > item_types.id, not null]
+  created_at timestamp [not null, default: `CURRENT_TIMESTAMP`]
+  updated_at timestamp [not null, default: `CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP`]
+
+  indexes {
+    (community_id, name) [unique]
+  }
+}
+
+Table survey_item_categories {
+  survey_id bigint [pk, ref: > surveys.id, not null]
+  item_category_id bigint [pk, ref: > item_categories.id, not null]
+}
+
+Table survey_decisions {
+  id bigint [pk, not null]
+  survey_id bigint [ref: > surveys.id, not null]
+  user_id bigint [ref: > users.id, not null]
+  item_id bigint [ref: > items.id, not null]
+  descision DecisionsType [not null]
+  created_at timestamp [not null, default: `CURRENT_TIMESTAMP`]
+  updated_at timestamp [not null, default: `CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP`]
+
+  indexes {
+    (survey_id, user_id, item_id) [unique]
+  }
+}
+
+Enum DecisionsType {
+  INTERESTED
+  NOT_INTERESTED
+}
+
+Table survey_results {
+  id bigint [pk, not null]
+  survey_id bigint [ref: > surveys.id, not null]
+  position "smallint unsigned" [not null]
+  item_id bigint [ref: > items.id, not null]
+  amount "tinyint unsigned" [not null]
+  created_at timestamp [not null, default: `CURRENT_TIMESTAMP`]
+  updated_at timestamp [not null, default: `CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP`]
+
+  indexes {
+    (survey_id, position) [unique]
+    (survey_id, item_id) [unique]
+  }
+}
+
+Table item_types {
+  id bigint [pk, not null]
+  name varchar(255) [not null, unique]
+  description varchar(255)
+  image blob
+  created_at timestamp [not null, default: `CURRENT_TIMESTAMP`]
+  updated_at timestamp [not null, default: `CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP`]
+}
+
+Table item_categories {
+  id bigint [pk, not null]
+  item_type bigint [ref: > item_types.id, not null]
+  name varchar(255) [not null, unique]
+  description varchar(255)
+  image blob
+  created_at timestamp [not null, default: `CURRENT_TIMESTAMP`]
+  updated_at timestamp [not null, default: `CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP`]
+}
+
+Table items {
+  id bigint [pk, not null]
+  item_type bigint [ref: > item_types.id, not null]
+  name varchar(255) [not null, unique]
+  description varchar(255)
+  image blob
+  created_at timestamp [not null, default: `CURRENT_TIMESTAMP`]
+  updated_at timestamp [not null, default: `CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP`]
+}
+
+Table item_category_items {
+  category_id bigint [pk, ref: > item_categories.id, not null]
+  item_id bigint [pk, ref: > items.id, not null]
+}
