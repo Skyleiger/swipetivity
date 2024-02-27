@@ -1,20 +1,37 @@
-part of 'community_list_bloc.dart';
+part of 'community_list_cubit.dart';
 
 @MappableClass()
 @immutable
-class CommunityListState with CommunityListStateMappable {
-  final CommunityListStatus status;
-  final List<Community> communities;
-
-  const CommunityListState({
-    required this.status,
-    this.communities = const [],
-  });
+abstract class CommunityListState with CommunityListStateMappable {
+  const CommunityListState();
 }
 
-enum CommunityListStatus {
-  initial,
-  loading,
-  success,
-  failure,
+@MappableClass()
+@immutable
+class CommunityListInitial extends CommunityListState
+    with CommunityListInitialMappable {
+  const CommunityListInitial();
+}
+
+@MappableClass()
+@immutable
+class CommunityListLoading extends CommunityListState
+    with CommunityListLoadingMappable {
+  const CommunityListLoading();
+}
+
+@MappableClass()
+@immutable
+class CommunityListLoaded extends CommunityListState
+    with CommunityListLoadedMappable {
+  final List<Community> communities;
+
+  const CommunityListLoaded({required this.communities});
+}
+
+@MappableClass()
+@immutable
+class CommunityListFailure extends CommunityListState
+    with CommunityListFailureMappable {
+  const CommunityListFailure();
 }

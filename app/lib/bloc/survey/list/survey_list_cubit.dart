@@ -27,9 +27,19 @@ class SurveyListCubit extends Cubit<SurveyListState> {
 
   Future<void> refreshSurveys() async {
     return repository.fetchSurveys(authBloc.account!).then((surveys) {
-      emit(SurveyListLoaded(surveys: surveys));
+      if (isClosed) {
+        return;
+      }
+
+      emitIgnoreClosed(SurveyListLoaded(surveys: surveys));
     }).catchError((error) {
-      emit(const SurveyListFailure());
+      emitIgnoreClosed(const SurveyListFailure());
     });
+  }
+
+  void emitIgnoreClosed(SurveyListState state) {
+    if (!isClosed) {
+      emit(state);
+    }
   }
 }

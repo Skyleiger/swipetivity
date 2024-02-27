@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:swipetivity_app/bloc/community/list/community_list_bloc.dart';
+import 'package:swipetivity_app/bloc/community/list/community_list_cubit.dart';
 import 'package:swipetivity_app/localization/translations.g.dart';
 import 'package:swipetivity_app/model/community.dart';
 import 'package:swipetivity_app/routing/routes.dart';
@@ -14,18 +14,18 @@ class CommunityListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) {
-        return CommunityListBloc(
+        return CommunityListCubit(
           authBloc: context.read(),
           repository: context.read(),
         );
       },
-      child: BlocBuilder<CommunityListBloc, CommunityListState>(
+      child: BlocBuilder<CommunityListCubit, CommunityListState>(
         builder: (context, state) {
           Widget child;
 
-          if (state.status == CommunityListStatus.loading) {
+          if (state is CommunityListLoading) {
             return const _LoadingView();
-          } else if (state.status == CommunityListStatus.success) {
+          } else if (state is CommunityListLoaded) {
             child = _LoadedView(communities: state.communities);
           } else {
             child = const _ErrorView();
@@ -33,12 +33,8 @@ class CommunityListPage extends StatelessWidget {
 
           return RefreshIndicator(
             child: child,
-            onRefresh: () async {
-              CommunityListBloc bloc = context.read<CommunityListBloc>()
-                ..add(const CommunityListRefreshEvent());
-
-              await bloc.stream.first;
-            },
+            onRefresh: () =>
+                context.read<CommunityListCubit>().refreshCommunities(),
           );
         },
       ),
