@@ -17,8 +17,16 @@ public class ItemCategoryEntity extends BaseEntity {
     @JoinColumn(name = "type_id", nullable = false)
     private ItemTypeEntity type;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, unique = true)
     private String name;
+
+    @Column(name = "description")
+    private String description;
+
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    @Column(name = "image")
+    private byte[] image;
 
     @ManyToMany
     @JoinTable(name = "item_category_items",

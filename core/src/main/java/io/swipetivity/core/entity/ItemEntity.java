@@ -20,8 +20,13 @@ public class ItemEntity extends BaseEntity {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "description", nullable = false)
+    @Column(name = "description")
     private String description;
+
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    @Column(name = "image")
+    private byte[] image;
 
     @ManyToMany(mappedBy = "items")
     private Set<ItemCategoryEntity> categories = new LinkedHashSet<>();
