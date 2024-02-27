@@ -4,7 +4,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_loading_buttons/material_loading_buttons.dart';
-import 'package:swipetivity_app/bloc/login/login_bloc.dart';
+import 'package:swipetivity_app/bloc/auth/login/login_bloc.dart';
 import 'package:swipetivity_app/localization/translations.g.dart';
 import 'package:swipetivity_app/routing/routes.dart';
 

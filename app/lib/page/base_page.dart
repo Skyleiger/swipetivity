@@ -18,7 +18,7 @@ class BasePage extends StatelessWidget {
     _ChildRoute(
       route: const SurveyListPageRoute().location,
       icon: Icons.thumb_up,
-      label: (context) => context.translations.surveysPage.name,
+      label: (context) => context.translations.surveyListPage.name,
     ),
   ];
 
