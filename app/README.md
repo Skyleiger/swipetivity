@@ -1,16 +1,22 @@
-# swipetivity_app
+# swipetivity-app
 
-The swipetivity app.
+## Introduction
 
-## Getting Started
+This is the Swipetivity app, written with Flutter in Dart. It is the frontend of the Swipetivity project.
 
-This project is a starting point for a Flutter application.
+## Usage
 
-A few resources to get you started if this is your first Flutter project:
+To run the app, you need to have Flutter installed.
+At the moment, the app is not yet ready for production, and it can only be run in debug mode by using Android Studio,
+Visual Studio Code or Xcode.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Before running the app, you need to get the dependencies and run the code generation. This can be done with the
+following commands:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```
+flutter pub get
+dart run build_runner build
+dart run slang 
+```
+
+Feel free to ask if you have any questions or problems.
